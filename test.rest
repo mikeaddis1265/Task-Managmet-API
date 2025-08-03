@@ -1,0 +1,191 @@
+### Variables
+@baseUrl = http://localhost:3000
+@contentType = application/json
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbWR2azlrZmcwMDAwdGxvNHhmNnduMWZrIiwiaWF0IjoxNzU0MjE4NjgxLCJleHAiOjE3NTQ4MjM0ODF9.m8GM0d0_x0Izj_845_VXwsQ5e4WqYgzY-uE5kqXxOpQ
+
+### Test User Registration
+POST {{baseUrl}}/api/auth/register
+Content-Type: {{contentType}}
+
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+###
+
+### Test User Login
+POST {{baseUrl}}/api/auth/login
+Content-Type: {{contentType}}
+
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+###
+
+### Test Registration with Invalid Email
+POST {{baseUrl}}/api/auth/register
+Content-Type: {{contentType}}
+
+{
+  "name": "Jane Doe",
+  "email": "invalid-email",
+  "password": "password123"
+}
+
+###
+
+### Test Registration with Short Password
+POST {{baseUrl}}/api/auth/register
+Content-Type: {{contentType}}
+
+{
+  "name": "Jane Doe",
+  "email": "jane@example.com",
+  "password": "123"
+}
+
+###
+
+### Test Registration with Existing Email
+POST {{baseUrl}}/api/auth/register
+Content-Type: {{contentType}}
+
+{
+  "name": "Another John",
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+###
+
+### Test Login with Wrong Password
+POST {{baseUrl}}/api/auth/login
+Content-Type: {{contentType}}
+
+{
+  "email": "john@example.com",
+  "password": "wrongpassword"
+}
+
+###
+
+### Test Login with Non-existent User
+POST {{baseUrl}}/api/auth/login
+Content-Type: {{contentType}}
+
+{
+  "email": "nonexistent@example.com",
+  "password": "password123"
+}
+
+###
+
+### Store token for future requests (copy token from login response)
+
+
+### ===== CATEGORIES API =====
+
+### Get All Categories (Public)
+GET {{baseUrl}}/api/categories
+
+###
+
+### Create New Category (Protected)
+POST {{baseUrl}}/api/categories
+Authorization: Bearer {{token}}
+Content-Type: {{contentType}}
+
+{
+  "name": "Work"
+}
+
+###
+
+### Create Another Category
+POST {{baseUrl}}/api/categories
+Authorization: Bearer {{token}}
+Content-Type: {{contentType}}
+
+{
+  "name": "Personal"
+}
+
+###
+
+### ===== TASKS API =====
+
+### Get All Tasks for User (Protected)
+GET {{baseUrl}}/api/tasks
+Authorization: Bearer {{token}}
+
+###
+
+### Create New Task (Protected) - Replace categoryId with actual ID from categories response
+POST {{baseUrl}}/api/tasks
+Authorization: Bearer {{token}}
+Content-Type: {{contentType}}
+
+{
+  "title": "Complete project documentation",
+  "description": "Write comprehensive API documentation",
+  "status": "PENDING",
+  "categoryId": "cmdvkj46r0001tlo4mk7f4x5a"
+}
+
+###
+
+### Create Another Task
+POST {{baseUrl}}/api/tasks
+Authorization: Bearer {{token}}
+Content-Type: {{contentType}}
+
+{
+  "title": "Review code",
+  "description": "Review pull requests",
+  "status": "COMPLETED",
+  "categoryId": "cmdvkj46r0001tlo4mk7f4x5a"
+}
+
+###
+
+### Update Task (Protected) - Replace task-id with actual task ID
+PUT {{baseUrl}}/api/tasks/replace-with-actual-task-id
+Authorization: Bearer {{token}}
+Content-Type: {{contentType}}
+
+{
+  "title": "Updated task title",
+  "description": "Updated description",
+  "status": "COMPLETED"
+}
+
+###
+
+### Delete Task (Protected) - Replace task-id with actual task ID
+DELETE {{baseUrl}}/api/tasks/replace-with-actual-task-id
+Authorization: Bearer {{token}}
+
+###
+
+### Filter Tasks by Category
+GET {{baseUrl}}/api/tasks?category=Work
+Authorization: Bearer {{token}}
+
+###
+
+### Filter Tasks by Status
+GET {{baseUrl}}/api/tasks?status=completed
+Authorization: Bearer {{token}}
+
+###
+
+### Filter Tasks by Category and Status
+GET {{baseUrl}}/api/tasks?category=Work&status=pending
+Authorization: Bearer {{token}}
+
+###
