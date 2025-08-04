@@ -40,11 +40,11 @@ model Task {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   
-  // Foreign Keys
+  
   userId      String
   categoryId  String
   
-  // Relations
+  
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   category    Category @relation(fields: [categoryId], references: [id])
   

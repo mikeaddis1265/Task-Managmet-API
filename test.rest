@@ -1,16 +1,15 @@
 ### Variables
-@baseUrl = http://localhost:3000
+@baseUrl = https://task-managmet-api.vercel.app/
 @contentType = application/json
 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbWR2azlrZmcwMDAwdGxvNHhmNnduMWZrIiwiaWF0IjoxNzU0MjE4NjgxLCJleHAiOjE3NTQ4MjM0ODF9.m8GM0d0_x0Izj_845_VXwsQ5e4WqYgzY-uE5kqXxOpQ
-
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbWR2bWkzdDQwMDAwaWIwNDFtdWhoZzhjIiwiaWF0IjoxNzU0MjIyMDM5LCJleHAiOjE3NTQ4MjY4Mzl9._fPY-3o7tPTCsGzkwogDz4TNJYZPSCMcnaKWFdv7SrA
 ### Test User Registration
 POST {{baseUrl}}/api/auth/register
 Content-Type: {{contentType}}
 
 {
   "name": "John Doe",
-  "email": "john@example.com",
+  "email": "abe@example.com",
   "password": "password123"
 }
 
