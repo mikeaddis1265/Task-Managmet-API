@@ -9,7 +9,7 @@ export async function POST(request) {
     const validatedData = registerSchema.parse(body)
     const { name, email, password } = validatedData
 
-    userExist = await prisma.user.findUnique({
+    existingUse = await prisma.user.findUnique({
       where: { email }
     })
 
