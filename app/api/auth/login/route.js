@@ -30,20 +30,17 @@ export async function POST(request) {
       )
     }
 
-    const token = generateToken(user.id)
-
-    const userResponse = {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      createdAt: user.createdAt
-    }
+    const token = jwt.sign(
+      { userId: user.id },
+      process.env.JWT_SECRET,
+      {expiresIn: '7d'}
+    )
 
     return Response.json(
       { 
         message: 'Login successful',
-        user: userResponse,
-        token 
+        user : {name: user.name, Id: user.id},
+        token
       },
       { status: 200 }
     )
