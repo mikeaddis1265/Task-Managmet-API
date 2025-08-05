@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt'
 import { prisma } from '@/lib/prisma'
+import jwt from 'jsonwebtoken'
 import { loginSchema } from '@/lib/validation'
 import { generateToken } from '@/lib/middleware'
 
