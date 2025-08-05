@@ -8,8 +8,8 @@ POST {{baseUrl}}/api/auth/register
 Content-Type: {{contentType}}
 
 {
-  "name": "John Doe",
-  "email": "abe@example.com",
+  "name": "darth",
+  "email": "darth@example.com",
   "password": "password123"
 }
 
